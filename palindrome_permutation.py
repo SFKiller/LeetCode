@@ -41,17 +41,17 @@ class Solution:
         add_count = 0
         for cc in origin_string:
             if 0 == origin_string[cc] % 2:
-                continue;
+                continue
             else:
                 odd_char = cc
-                add_count++
+                add_count += 1
 
         if add_count <= 1:
-            half_s = generateHalf(origin_string)
-            
-        length = len(s)
-        for i in range(length):
+            half_s = self.generateBaseString(origin_string)
+            self.generatePalindromeInternal(half_s, "", len(half_s), odd_char)
+            return self.results
 
+        return self.results
 
     def generateBaseString(self, origin_s):
         half_s = ""
@@ -60,9 +60,18 @@ class Solution:
                 half_s += ccc
         return half_s
 
-    def generatePalindromeInternal(self, s, leftPart, length, odd_char, result):
+    def generatePalindromeInternal(self, s, leftPart, length, odd_char):
         if length == len(leftPart):
-            result.append(leftPart + odd_char + reverseString(leftPart))
-
+            self.results.append(leftPart + odd_char + leftPart[::-1])
+            return
         for i in range(len(s)):
-            
+            if i > 0 and s[i] == s[i - 1]:
+                continue
+            else:
+                self.generatePalindromeInternal(s[ :i] + s[i + 1: ], leftPart + s[i], length, odd_char)
+
+if __name__ == '__main__':
+    s = sys.argv[1]
+    origin_s = str(s)
+    solution = Solution()
+    print(solution.generatePalindromes(origin_s))
