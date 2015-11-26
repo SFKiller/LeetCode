@@ -26,7 +26,7 @@ public class ShortestWorldDistance {
     public int shortestDistance(String[] words, String word_a, String word_b) {
         int w_p_a = -1;
         int w_p_b = -1;
-        int d = 0;
+        int d = words.length;
 
         for (int i = 0; i < words.length; i++) {
             if (words[i].equals(word_a)) {
@@ -44,7 +44,7 @@ public class ShortestWorldDistance {
     }
 
     private int min(int a, int b) {
-        return a > b ? a : b;
+        return a > b ? b : a;
     }
 
     private int abs(int x) {
