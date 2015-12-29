@@ -40,7 +40,7 @@ class Solution:
                     num_dict[num] = num_dict.get(num, 0) + 1
             else:
                 num_dict[num] = 1
-        return 0
+        return nums[0]
 
     def majorityElement3(self, nums):
         if nums is None or 0 == len(nums):
